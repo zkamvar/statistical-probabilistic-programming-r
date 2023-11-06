@@ -8,7 +8,7 @@
         extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
       },
       tex2jax: {
-        inlineMath: [ ['$','$'], ['\\(', '\\)']],
+        inlineMath: [['\\(', '\\)']],
         displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
         processEscapes: true
       }
@@ -28,7 +28,7 @@
         
       </div>
     </div>
-    <div class="selector-container ">
+    <div class="selector-container">
       
       
       <div class="dropdown">
@@ -95,9 +95,11 @@
 </aside><div class="container">
       <div class="row">
         <!-- START: inst/pkgdown/templates/navbar.html -->
-  <div id="sidebar-col" class="col-lg-4">
-    <div id="sidebar" class="sidebar">
-      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle"><i class="search-icon" data-feather="x" role="img"></i></button>
+<div id="sidebar-col" class="col-lg-4">
+  <div id="sidebar" class="sidebar">
+      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle">
+          <i class="search-icon" data-feather="x" role="img"></i>
+        </button>
         <div class="sidebar-inner">
           <div class="row mobile-row">
             <div class="col">
@@ -207,23 +209,12 @@
 <div class="accordion accordion-flush" id="accordionFlushcurrent">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-headingcurrent">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
         <span class="visually-hidden">Current Chapter</span>
         <span class="current-chapter">
         8. Other topics
         </span>
-      </button>
+      
     </div><!--/div.accordion-header-->
-        
-    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
-      <div class="accordion-body">
-        <ul><li><a href="#gaussian-processes">Gaussian processes</a></li>
-<li><a href="#dimension-reduction">Dimension reduction</a></li>
-<li><a href="#missing-observations">Missing observations</a></li>
-<li><a href="#feature-selection">Feature selection</a></li>
-<li><a href="#differential-equations">Differential equations</a></li>
-        </ul></div><!--/div.accordion-body-->
-    </div><!--/div.accordion-collapse-->
         
   </div><!--/div.accordion-item-->
 </div><!--/div.accordion-flush-->
@@ -274,6 +265,7 @@
               </div>
             </div>
             <hr class="half-width resources"><a href="../instructor/aio.html">See all in one page</a>
+            
 
             <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
             
@@ -292,12 +284,18 @@
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="../instructor/model-critisism.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Model checking</a>
-        <a class="chapter-link float-end" href="../instructor/recommended-reading.html" rel="next">Next: Recommended reading... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link" href="../instructor/model-critisism.html" rel="prev">
+          <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
+          Previous: Model checking
+        </a>
+        <a class="chapter-link float-end" href="../instructor/recommended-reading.html" rel="next">
+          Next: Recommended reading... 
+          <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
+        </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Other topics</h1>
-        <p> Last updated on 2023-07-11 | 
+        <p> Last updated on 2023-11-06 | 
         
         <a href="https://github.com/carpentries-incubator/statistical-probabilistic-programming-r/edit/main/episodes/other-topics.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -326,27 +324,53 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
-<ul><li>Other things</li>
+<ul><li>Learn more</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<section id="gaussian-processes"><h2 class="section-heading">Gaussian processes<a class="anchor" aria-label="anchor" href="#gaussian-processes"></a>
-</h2>
-<hr class="half-width"><ul><li>Basic idea, short example with squared exponential kernel</li>
-<li>In exercises there is a GP classification example.</li>
-</ul></section><section id="dimension-reduction"><h2 class="section-heading">Dimension reduction<a class="anchor" aria-label="anchor" href="#dimension-reduction"></a>
-</h2>
-<hr class="half-width"><ul><li>Probabilistic PCA</li>
-</ul></section><section id="missing-observations"><h2 class="section-heading">Missing observations<a class="anchor" aria-label="anchor" href="#missing-observations"></a>
-</h2>
-<hr class="half-width"></section><section id="feature-selection"><h2 class="section-heading">Feature selection<a class="anchor" aria-label="anchor" href="#feature-selection"></a>
-</h2>
-<hr class="half-width"><ul><li>Horseshoe prior (difficult to fit)</li>
-</ul></section><section id="differential-equations"><h2 class="section-heading">Differential equations<a class="anchor" aria-label="anchor" href="#differential-equations"></a>
-</h2>
-<hr class="half-width"><div id="keypoints1" class="callout keypoints">
+<p>Add text</p>
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge<a class="anchor" aria-label="anchor" href="#challenge1"></a>
+</h3>
+<div class="callout-content">
+<p>You can define a challenge here</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">
+  Show me the solution
+  </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>… and a solution here</p>
+</div>
+</div>
+</div>
+</div>
+<p>More text</p>
+<div id="discussion1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Discussion<a class="anchor" aria-label="anchor" href="#discussion1"></a>
+</h3>
+<div class="callout-content">
+<p>Discussion poitns</p>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -362,15 +386,24 @@
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use. 
  -->
-</section></div> <!-- / div.lesson-content -->
+
+
+
+      </div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/model-critisism.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
         <a class="chapter-link float-end" href="../instructor/recommended-reading.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
-        <a class="chapter-link" href="../instructor/model-critisism.html" rel="prev"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous: Model checking</a>
-        <a class="chapter-link float-end" href="../instructor/recommended-reading.html" rel="next">Next: Recommended reading... <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link" href="../instructor/model-critisism.html" rel="prev">
+          <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
+          Previous: Model checking
+        </a>
+        <a class="chapter-link float-end" href="../instructor/recommended-reading.html" rel="next">
+          Next: Recommended reading... 
+          <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
+        </a>
       </div>
     </nav></div> <!-- / div.primary-content.col-xs-12 -->
 <!-- END:   inst/pkgdown/templates/content-instructor.html-->
@@ -392,9 +425,9 @@ any links that you are not going to use.
         <p>Materials licensed under <a href="../LICENSE.html">CC-BY 4.0</a> by the authors</p>
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
-        <p>Built with <a href="https://github.com/carpentries/sandpaper" class="external-link">sandpaper (0.12.5)</a>,
-        <a href="https://github.com/carpentries/pegboard" class="external-link">pegboard (0.5.3)</a>,
-      and <a href="https://github.com/carpentries/varnish/tree/0.2.17" class="external-link">varnish (0.2.17)</a>.</p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.14.0" class="external-link">sandpaper (0.14.0)</a>,
+        <a href="https://github.com/carpentries/pegboard/tree/0.7.1" class="external-link">pegboard (0.7.1)</a>,
+      and <a href="https://github.com/carpentries/varnish/tree/0.3.1" class="external-link">varnish (0.3.1)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
 	<div id="to-top">
@@ -414,9 +447,9 @@ any links that you are not going to use.
   "creativeWorkStatus": "active",
   "url": "https://carpentries-incubator.github.io/statistical-probabilistic-programming-r/instructor/other-topics.html",
   "identifier": "https://carpentries-incubator.github.io/statistical-probabilistic-programming-r/instructor/other-topics.html",
-  "dateCreated": "2023-06-29",
-  "dateModified": "2023-07-11",
-  "datePublished": "2023-08-08"
+  "dateCreated": "2023-11-06",
+  "dateModified": "2023-11-06",
+  "datePublished": "2023-11-06"
 }
 
   </script><script>
