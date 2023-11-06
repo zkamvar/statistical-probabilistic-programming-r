@@ -14,9 +14,12 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand the basic idea of Bayesian statistical thinking.
+- Basic idea of Bayesian statistical thinking
 - Bayesian formula: prior, likelihood, posterior
-- Implement grid approximation for a Bayesian model
+- Grid approximation
+- Communicating posterior information
+  - Point estimates
+  - Intervals
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -37,17 +40,17 @@ $$
 
 The proportional Bayes' formula produces an unnormalized posterior distribution which can then be normalized to access the normalized posterior. 
 
-## Example: handedness
+## Example: Binomial model
 
 Let us illustrate the use of the Bayes' theorem with an example. 
 
 Assume we are interested in estimating the prevalence of left-handedness based on a sample of 50 children. In this sample 7 children reported left-handedness and 43 were right-handed. Since the outcome is binary and the children independent (assumption) we can model left-handedness with the binomial distribution:
 
 $$
-\text{Number of left-handed} \sim Bin(n, p)
+\text{Number of left-handed} \sim Bin(n, \theta)
 $$
 
-The parameters $n$ and $p$ refer to the total number of children and proportion of the left-handed in the population, respectively. The likelihood for the data is $p(X|\theta) = Bin(7 | 50, p).$
+The parameters $n$ and $\theta$ refer to the total number of children and proportion of the left-handed in the population, respectively. The likelihood for the data is $p(X|\theta) = Bin(7 | 50, \theta).$
 
 Next, we should think what sort of prior information we'd like to use. For instance, the following distributions might be considered: $Unif(0, 1); \, N(0, 1)$ and $Beta(1, 10)$. 
 
@@ -63,7 +66,7 @@ What could be the rationale for choosing each of these prior distributions?
 
 For example: 
 
-- uniform = absolutely no idea about $p$ a-priori
+- uniform = absolutely no idea about $\theta$ a-priori
 - normal = a parsimonious distribution, often a good choice
 - Beta = conjugate prior, hyperparameters can be interpreted as prior data, 1 out of 10+1 people is a leftie. 
 
@@ -90,22 +93,22 @@ x <- 7
 
 # Define a grid of points in the interval [0, 1], with 0.01 interval
 delta <- 0.01
-p_grid <- seq(from = 0, to = 1, by = delta)
+theta_grid <- seq(from = 0, to = 1, by = delta)
 ```
 
 Next, we'll define the likelihood, uniform prior and posterior functions. 
 
 
 ```r
-likelihood <- dbinom(x = x, size = N, prob = p_grid)
-prior <- rep(1, length(p_grid))
+likelihood <- dbinom(x = x, size = N, prob = theta_grid)
+prior <- rep(1, length(theta_grid))
 posterior <- likelihood*prior
 
 # normalize posterior
 posterior <- posterior/(sum(posterior)*delta)
 
 # Make data frame
-df <- data.frame(p = p_grid, likelihood, prior, posterior)
+df <- data.frame(theta = theta_grid, likelihood, prior, posterior)
 ```
 
 Finally, we can plot these functions
@@ -114,15 +117,25 @@ Finally, we can plot these functions
 ```r
 # wide to long format
 df_l <- df %>%
-  gather(key = "func", value = "value", -p)
+  gather(key = "Function", value = "value", -theta)
 
 # Plot
 p1 <- ggplot(df_l, 
-       aes(x = p, y = value, color = func)) + 
-  geom_point() +
-  geom_line() +
+       aes(x = theta, y = value, color = Function)) + 
+  geom_point(size = 2) +
+  geom_line(size = 1) +
   scale_color_grafify()
+```
 
+```{.warning}
+Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+generated.
+```
+
+```r
 p1
 ```
 
@@ -136,17 +149,17 @@ Take a moment to analyze the figure.
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
-Notice that the likelihood function is not a distribution in terms of the parameter $p$, so it doesn't sum to one. Below, we normalize it for better illustration. 
+Notice that the likelihood function is not a distribution in terms of the parameter $\theta$, so it doesn't sum to one. Below, we normalize it for better illustration. 
 
 
-Now that we have a posterior distribution (approximation) available, we can try to quantify it by computing features of it. The mode (maximum a posteriori, or MAP), average and variance and commonly employed point estimates: 
+Now that we have a posterior distribution (approximation) available, we can try to quantify it by computing features of it. The mode, average and variance and commonly employed point estimates: 
 
 
 ```r
 data.frame(Estimate = c("Mode", "Mean", "Variance"), 
-           Value = c(df[which.max(df$posterior), "p"],
-                     sum(df$p*df$posterior*delta), 
-                     sum(df$p^2*df$posterior*delta) - sum(df$p*df$posterior*delta)^2))
+           Value = c(df[which.max(df$posterior), "theta"],
+                     sum(df$theta*df$posterior*delta), 
+                     sum(df$theta^2*df$posterior*delta) - sum(df$theta*df$posterior*delta)^2))
 ```
 
 ```{.output}
@@ -160,6 +173,8 @@ data.frame(Estimate = c("Mode", "Mean", "Variance"),
 ::::::::::::::::::::::::::::::::::::: discussion
 
 These are point estimates. What information do they give? What is absent? Think of other ways in which you could quantify the posterior. How could you quantify the uncertainty. 
+
+Why are the mode, mean and variance computed the way they are above?
 
 What is the conclusion of the analysis in terms of handedness? 
 
@@ -183,9 +198,9 @@ Next, let's compare the effect of the prior, using the distributions mentioned a
 
 
 ```r
-uniform_prior <- dunif(x = p_grid, min = 0, max = 1)
-normal_prior <- dnorm(x = p_grid, mean = 0, sd = 0.1)
-beta_prior <- dbeta(x = p_grid, shape1 = 2, shape2 = 10)
+uniform_prior <- dunif(x = theta_grid, min = 0, max = 1)
+normal_prior <- dnorm(x = theta_grid, mean = 0, sd = 0.1)
+beta_prior <- dbeta(x = theta_grid, shape1 = 2, shape2 = 10)
 
 posterior1 <- likelihood*uniform_prior/(sum(likelihood*uniform_prior)*delta)
 posterior2 <- likelihood*normal_prior/(sum(likelihood*normal_prior)*delta)
@@ -195,17 +210,17 @@ posterior3 <- likelihood*beta_prior/(sum(likelihood*beta_prior)*delta)
 likelihood <- likelihood/(sum(likelihood)*delta)
 
 
-df2 <- data.frame(p = rep(p_grid, 3), 
+df2 <- data.frame(theta = rep(theta_grid, 3), 
                   likelihood = rep(likelihood, 3),
                   prior = c(uniform_prior,  normal_prior, beta_prior), 
                   posterior = c(posterior1, posterior2, posterior3), 
                   prior_type = rep(c("uniform", "normal", "beta"),
-                                   each = length(p_grid)))
+                                   each = length(theta_grid)))
 
-df2_w <- df2 %>% gather(key = "func", value = "value", -c(p, prior_type))
+df2_w <- df2 %>% gather(key = "Function", value = "value", -c(theta, prior_type))
 
 p2 <-ggplot(df2_w,
-         aes(x = p, y = value, color = func)) + 
+         aes(x = theta, y = value, color = Function)) + 
     geom_point() + 
     geom_line() +
     facet_wrap(~prior_type,
@@ -227,7 +242,7 @@ Play around with the parameters of the prior distributions and see how it affect
 
 The main limitation of the grid approximation method is that it becomes impractical for models with a large number of parameters. The reason is that the number of computations grows as $O \{ n^p \}$ where $n$ is the number of grid points per model parameter and $p$ the number of parameters. This quickly becomes prohibitive, and the grid approximation is seldom used in practice. The standard approach to posterior computations is to draw samples from it with Markov chain Monte Carlo (MCMC) methods, which we will go through later. In the following episodes, we will learn how to perform computations on samples drawn from a distribution and eventually implement our own MCMC algorithms. 
 
-## Example: normal model 
+## Example: Normal model 
 
 Let us implement another standard statistical model, the normal model, with the grid approximation. We'll assume that the variance of the model in known, $\sigma^2=1,$ and we'd like to learn the mean parameter $\mu.$
 
@@ -265,8 +280,6 @@ $$\log p(X | \theta) = \sum_{i = 1}^{N} \log p(X_i | \theta)$$
 
 Implement the grid approximation the normal model with the generated data as described above.
 
-Work with logarithms to avoid underflow. 
-
 :::::::::::::::::::::: solution
 
 
@@ -274,29 +287,24 @@ Work with logarithms to avoid underflow.
 ```r
 df <- data.frame(mu = mu_grid)
 
-# Log likelihood
+# Likelihood
 for(i in 1:nrow(df)) {
-  # print(i)
-  df[i, "log_likelihood"] <- sum(dnorm(x = x,
-                                   mean = df[i, "mu"], sd = sigma,
-                                   log = TRUE))
+
+  df[i, "likelihood"] <- prod(dnorm(x = x,
+                                    mean = df[i, "mu"], sd = sigma,
+                                    log = FALSE))
 }
 
-df <- df %>% 
-  mutate(likelihood = exp(log_likelihood))
 
 # Prior: mu ~ N(0, 1)
 df <- df %>% 
-  mutate(log_prior = dnorm(x = mu,
-                           mean = 0 ,
-                           sd = 1,
-                           log = TRUE)) %>% 
-  mutate(prior = exp(log_prior))
+  mutate(prior = dnorm(x = mu,
+                     mean = 0 ,
+                     sd = 1))
 
 # Posterior
 df <- df %>% 
-  mutate(log_posterior = log_prior + log_likelihood) %>% 
-  mutate(posterior = exp(log_posterior)) %>% 
+  mutate(posterior = prior * likelihood) %>% 
   mutate(posterior = posterior/(sum(posterior)*delta)) # normalize
 
 # Normalize likelihood (for better illustration)
@@ -316,26 +324,17 @@ Now, we can plot the prior, likelihood, and posterior, along with the unknown tr
 ```r
 # Wide --> long format
 df_l <- df %>% 
-  gather(key = "func", value = "value", -c("mu"))
+  gather(key = "Function", value = "value", -c("mu"))
 
 
-# In log scale
-p_log <- ggplot(df_l %>% 
-         filter(grepl("log", func)), 
-       aes(x = mu, y = value, color = func)) +
-  geom_line() +
-  geom_vline(xintercept = unknown_mu)
-
-# In regular scale
-p_reg <- ggplot(df_l %>% 
-         filter(!grepl("log", func)), 
-       aes(x = mu, y = value, color = func)) +
-  geom_line() +
+p <- ggplot(df_l,
+                aes(x = mu, y = value, color = Function)) +
+  geom_line(size = 1) +
   geom_vline(xintercept = unknown_mu, 
-             color = "blue") +
+             color = "black") +
   scale_color_grafify()
 
-p_reg
+print(p)
 ```
 
 <img src="fig/bayesian-statistics-rendered-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
@@ -350,126 +349,153 @@ What happens if the true value of $\mu$ is not within the defined grid?
 :::::::::::::::::::::::::::::::::::::::::::::::
 
 
-::::::::::::::::::::::::::::::::::::: challenge
-
-Implement the grid approximation with both unkown mean $\mu$ and standard deviation $\sigma:$
-
-1. Generate data
-2. Define grid for $mu$ and $sigma$
-3. Compute prior, likelihood and posterior at grid points
-  - Use normal and gamma priors for $\mu$ and $\sigma$, respectively
-    - The prior is the product of priors of $\mu$ and $\sigma$
-4. Plot prior, likelihood and posterior (in 2D)
-5. Compute marginal prior, likelihood and posterior for $\mu$
-  - Marginalize (integrate) over sigma
-  - Normalize
-  - Plot
-
-:::::::::::::::::::::::: solution
-Included in the instructor's notes. 
-::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::::::::::::
 
 
 
-::::::::::::::::::::::::::::::::::::: instructor
+
+
+
+
+## Example: Gamma model
+
+Assume the following data was generated from a $\Gamma(\alpha, \beta)$ distribution: 
 
 
 ```r
-## Data *************************** ####
+X <- c(0.34, 0.2, 0.22, 0.77, 0.46, 0.73, 0.24, 0.66, 0.64)
+```
 
-# Sample size
-N <- 15
-
-
-# Generate data
-x <- rnorm(n = N, mean = 2.5, sd = 0.5) # mu = 2.5, sigma = 0.5
+Estimate the parameters alpha, beta using the grid approximation. Compute the marginal posterior of alpha. 
 
 
-# Define a grid of points for mu
-delta <- 0.01
-mu_grid <- seq(from = -5, to = 5, by = delta)
-sigma_grid <- seq(from = 0.01, to = 2, by = delta)
+Let's define a grid of points for $\alpha$ and $\beta$ and make a data frame with all the pairwise combinations of the grid points. Note that since this model contains two parameters, the grid points reside in 2D space!
 
 
+```r
+delta <- 0.05
+alpha_grid <- seq(from = 0.01, to = 15, by = delta)
+beta_grid <- seq(from = 0.01, to = 25, by = delta)
 
-## Fit model ********************** ####
 
-df <- expand.grid(mu = mu_grid, sigma = sigma_grid)
+df <- expand.grid(alpha = alpha_grid, beta = beta_grid)
+```
 
-# Log likelihood
+
+Next, we'll compute the likelihood which is the product of the likelihoods of individual observations. 
+
+
+```r
+# Loop over all alpha, beta combinations
 for(i in 1:nrow(df)) {
-  # print(i)
-  df[i, "log_likelihood"] <- sum(dnorm(x = x,
-                                   mean = df[i, "mu"], sd = df[i, "sigma"],
-                                   log = TRUE))
+  df[i, "likelihood"] <- prod(
+    dgamma(x = X,
+           shape = df[i, "alpha"],
+           rate = df[i, "beta"])
+    )
 }
+```
 
-df <- df %>% 
-  mutate(likelihood = exp(log_likelihood))
+Next, we'll add priors for $\alpha$ and $\beta$. They are both positive which should be reflected in the prior. A conjugate prior for the Gamma likelihood [exists](https://en.wikipedia.org/wiki/Gamma_distribution#Bayesian_inference) but we'll use simple $\Gamma$ priors with large variance.
 
-# Priors: mu ~ N(0, 5), sigma ~ Gamma(2, 1)
+
+```r
+# Priors: alpha, beta ~ Gamma(2, .1)
 df <- df %>% 
-  mutate(log_prior = dnorm(x = mu,
-                           mean = 0 ,
-                           sd = 1,
-                           log = TRUE) + dgamma(x = sigma, 
-                                                shape = 2,
-                                                scale = 1,
-                                                log = TRUE)) %>% 
-  mutate(prior = exp(log_prior))
+  mutate(prior = dgamma(x = alpha, 2, .1)*dgamma(x = beta, 2, 0.1))
 
 # Posterior
 df <- df %>% 
-  mutate(log_posterior = log_prior + log_likelihood) %>% 
-  mutate(posterior = exp(log_posterior)) %>% 
+  mutate(posterior = prior*likelihood) %>% 
   mutate(posterior = posterior/(sum(posterior)*delta^2)) # normalize
 
 
-
-
 # Plot
-p_posterior <- ggplot(df, 
-             aes(x = mu, y = sigma, fill = posterior)) + 
-  geom_tile() +
+p_joint_posterior <- df %>% 
+  ggplot() + 
+  geom_tile(aes(x = alpha, y = beta, fill = posterior)) + 
   scale_fill_gradientn(colours = rainbow(5))
 
-p_likelihood <- ggplot(df, 
-                      aes(x = mu, y = sigma, fill = likelihood)) + 
-  geom_tile() +
-  scale_fill_gradientn(colours = rainbow(5))
-
-p_prior <- ggplot(df, 
-                       aes(x = mu, y = sigma, fill = prior)) + 
-  geom_tile() +
-  scale_fill_gradientn(colours = rainbow(5))
-
-
-p <- plot_grid(p_prior, p_likelihood, p_posterior)
-
-
-## Marginalize ******************** ####
-
-# long to wide format
-df_w <- df %>%
-  select(-c(log_likelihood, log_prior, log_posterior)) %>% 
-  gather(key = "func", value = "value", -c(mu, sigma))
-
-
-df_w_marginal <- df_w %>% 
-  group_by(mu, func) %>% 
-  summarise(marginal_distribution = sum(value)) %>% # integrate over sigma
-  ungroup %>% 
-  group_by(func) %>% # normalize marginal distributions
-  mutate(marginal_distribution = marginal_distribution/(sum(marginal_distribution)*delta))
-
-p_marginal <- df_w_marginal %>% 
-  ggplot(data = ., aes(x = mu, y = marginal_distribution, color = func)) + 
-  geom_line()
+p_joint_posterior
 ```
-:::::::::::::::::::::::::::::::::::::::::::::::
 
+<img src="fig/bayesian-statistics-rendered-unnamed-chunk-13-1.png" style="display: block; margin: auto;" />
+
+
+Next, we'll compute the MAP, which is a point in the 2-dimensional parameter space. 
+
+
+```r
+df[which.max(df$posterior), c("alpha", "beta")]
+```
+
+```{.output}
+      alpha beta
+59194  4.66 9.86
+```
+
+However, often in addition to the parameters of interest, the model contains parameters we are not interested. For instance, if we were only interested in $\alpha$, then $\beta$ would called a 'nuisance' parameter. Nuisance parameters are part of the full ('joint') posterior, but they can be discarded by integrating the joint posterior over these parameters (see BDA3: p.63 for details). A posterior integrated over some of the parameters is called a marginal posterior. 
+
+Let's now compute the marginal posterior for $\alpha$ by integrating over $\beta$. Intuitively it can be helpful to think of marginalization as a process where all of the joint posterior mass is drawn towards the $\alpha$ axis, as if drawn by a gravitational force. 
+
+
+```r
+# Get marginal posterior for alpha
+alpha_posterior <- df %>% 
+  group_by(alpha) %>% 
+  summarize(posterior = sum(posterior)) %>% 
+  mutate(posterior = posterior/(sum(posterior)*delta))
+
+
+p_alpha_posterior <- alpha_posterior %>% 
+  ggplot() + 
+  geom_line(aes(x = alpha, y = posterior), 
+            color = posterior_color, 
+            size = 1)
+
+print(p_alpha_posterior)
+```
+
+<img src="fig/bayesian-statistics-rendered-unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
+
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::: challenge
+
+Does the MAP of the joint posterior of $\theta = (\alpha, \beta)$ correspond to the MAPs of the marginal posteriors of $\alpha$ and $\beta$?
+
+::::::::::::: solution
+No. Why?
+:::::::::::::
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+## Posterior intervals
+
+
+## Final challenge
+
+::::::::::::::::::::::::::::::::::::: challenge
+
+The following data is a collection of daily milk yield (in liters) for dairy cows.
+
+
+```r
+X <- c(30.25, 34.98, 29.66, 20.14, 23.92, 38.61, 36.89, 34.68, 25.83, 29.93)
+```
+
+
+Estimate the average daily yield  $\mu$ using the normal model. 
+
+Use the grid approximation and choose some non-uniform priors.
+Plot the marginal posterior for $\mu$.
+Compute the 90% credible interval.
+What is the probability that the daily milk yield is more than 30 liters?
+
+:::::::::::::::::::::::: solution
+Solution
+::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::::::::
 
 
 ::::::::::::::::::::::::::::::::::::: keypoints 
@@ -479,24 +505,17 @@ p_marginal <- df_w_marginal %>%
 - Posterior distribution quantifies the probability of parameter values conditional on the data.
 - Posterior is a compromise between the data and prior. The less data available, the bigger the effect of the prior. 
 - The grid approximation is a means for accessing posterior distributions which may be difficult to compute analytically
+- Marginal posterior is accessed by integrating over nuisance parameters. 
 
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+
 ## Reading 
 
-- Gelman *et al.*, Bayesian Data Analysis (3rd ed.): Ch. 1, 2
-- McElreath, Statistical Rethinking (2nd ed.): Ch. 2
-
-
-
-::::::::::::::::::::::::::::::::::::: instructor
-
-Here are some exercises that can be used as additional challenges. 
-
-1. 
-
-:::::::::::::::::::::::::::::::::::::::::::::::
+- Gelman *et al.*, Bayesian Data Analysis (3rd ed.): Ch. 1-3
+- McElreath, Statistical Rethinking (2nd ed.): Ch. 1.2
 
 
 
