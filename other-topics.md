@@ -4,7 +4,11 @@ teaching: 10
 exercises: 2
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+
+
+
+
+:::::::::::::::::::::::::::::::::::::: questions
 
 - What next?
 
@@ -12,25 +16,37 @@ exercises: 2
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Other things
+
+- Learn more
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Gaussian processes
+Add text
 
-- Basic idea, short example with squared exponential kernel 
-- In exercises there is a GP classification example. 
 
-## Dimension reduction
-- Probabilistic PCA
+::::::::::::::::::::::::::::::::::::::::: challenge
 
-## Missing observations
+You can define a challenge here
 
-## Feature selection
-- Horseshoe prior (difficult to fit)
+::::::::::::::::::::::::::::::: solution
 
-## Differential equations
+... and a solution here
 
+
+::::::::::::::::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::::::::::::::::::::::
+
+More text
+
+
+
+::::::::::::::::::::::::::::::::::::: discussion
+
+Discussion poitns
+
+:::::::::::::::::::::::::::::::::::::::::::::::
 
 
 
