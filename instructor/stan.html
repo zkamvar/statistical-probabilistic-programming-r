@@ -307,7 +307,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Stan</h1>
-        <p> Last updated on 2023-11-06 | 
+        <p> Last updated on 2023-11-21 | 
         
         <a href="https://github.com/carpentries-incubator/statistical-probabilistic-programming-r/edit/main/episodes/stan.Rmd" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
         
@@ -424,8 +424,8 @@ program.</p>
 <pre class="output" tabindex="0"><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 6e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
+Chain 1: Gradient evaluation took 5e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -442,15 +442,15 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.006 seconds (Warm-up)
+Chain 1:  Elapsed Time: 0.004 seconds (Warm-up)
 Chain 1:                0.005 seconds (Sampling)
-Chain 1:                0.011 seconds (Total)
+Chain 1:                0.009 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 2e-06 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.
+Chain 2: Gradient evaluation took 1e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -467,15 +467,15 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.006 seconds (Warm-up)
-Chain 2:                0.005 seconds (Sampling)
-Chain 2:                0.011 seconds (Total)
+Chain 2:  Elapsed Time: 0.004 seconds (Warm-up)
+Chain 2:                0.003 seconds (Sampling)
+Chain 2:                0.007 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 2e-06 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.
+Chain 3: Gradient evaluation took 1e-06 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -492,15 +492,15 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.006 seconds (Warm-up)
-Chain 3:                0.005 seconds (Sampling)
-Chain 3:                0.011 seconds (Total)
+Chain 3:  Elapsed Time: 0.004 seconds (Warm-up)
+Chain 3:                0.003 seconds (Sampling)
+Chain 3:                0.007 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 2e-06 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.
+Chain 4: Gradient evaluation took 1e-06 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -517,9 +517,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.006 seconds (Warm-up)
-Chain 4:                0.005 seconds (Sampling)
-Chain 4:                0.011 seconds (Total)
+Chain 4:  Elapsed Time: 0.004 seconds (Warm-up)
+Chain 4:                0.003 seconds (Sampling)
+Chain 4:                0.007 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <p>With the default setting Stan runs 4 MCMC chains with 2000 iterations
@@ -541,10 +541,10 @@ quickly review the results.</p>
 post-warmup draws per chain=1000, total post-warmup draws=4000.
 
        mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-p      0.16    0.00 0.05   0.07   0.12   0.15   0.19   0.27  1402    1
-lp__ -22.83    0.02 0.69 -24.84 -23.01 -22.55 -22.38 -22.33  1988    1
+p      0.15    0.00 0.05   0.07   0.12   0.15   0.18   0.26  1601    1
+lp__ -22.82    0.02 0.70 -24.82 -22.99 -22.54 -22.37 -22.33  1244    1
 
-Samples were drawn using NUTS(diag_e) at Mon Nov  6 22:23:54 2023.
+Samples were drawn using NUTS(diag_e) at Tue Nov 21 01:00:42 2023.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -716,8 +716,8 @@ easier.</p>
 <pre class="output" tabindex="0"><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 6e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
+Chain 1: Gradient evaluation took 5e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -734,15 +734,15 @@ Chain 1: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
-Chain 1:  Elapsed Time: 0.01 seconds (Warm-up)
-Chain 1:                0.009 seconds (Sampling)
-Chain 1:                0.019 seconds (Total)
+Chain 1:  Elapsed Time: 0.007 seconds (Warm-up)
+Chain 1:                0.006 seconds (Sampling)
+Chain 1:                0.013 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 3e-06 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 2: Gradient evaluation took 2e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -759,9 +759,9 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.01 seconds (Warm-up)
-Chain 2:                0.008 seconds (Sampling)
-Chain 2:                0.018 seconds (Total)
+Chain 2:  Elapsed Time: 0.007 seconds (Warm-up)
+Chain 2:                0.006 seconds (Sampling)
+Chain 2:                0.013 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
@@ -784,9 +784,9 @@ Chain 3: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
-Chain 3:  Elapsed Time: 0.01 seconds (Warm-up)
-Chain 3:                0.009 seconds (Sampling)
-Chain 3:                0.019 seconds (Total)
+Chain 3:  Elapsed Time: 0.007 seconds (Warm-up)
+Chain 3:                0.007 seconds (Sampling)
+Chain 3:                0.014 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 4).
@@ -809,9 +809,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.01 seconds (Warm-up)
-Chain 4:                0.008 seconds (Sampling)
-Chain 4:                0.018 seconds (Total)
+Chain 4:  Elapsed Time: 0.007 seconds (Warm-up)
+Chain 4:                0.007 seconds (Sampling)
+Chain 4:                0.014 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <p>and plot the posterior</p>
@@ -1032,7 +1032,7 @@ any links that you are not going to use.
         
         <p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">Template licensed under CC-BY 4.0</a> by <a href="https://carpentries.org" class="external-link">The Carpentries</a></p>
         <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.14.1" class="external-link">sandpaper (0.14.1)</a>,
-        <a href="https://github.com/carpentries/pegboard/tree/0.7.1" class="external-link">pegboard (0.7.1)</a>,
+        <a href="https://github.com/carpentries/pegboard/tree/0.7.2" class="external-link">pegboard (0.7.2)</a>,
       and <a href="https://github.com/carpentries/varnish/tree/0.3.3" class="external-link">varnish (0.3.3)</a>.</p>
 			</div>
 		</footer></div> <!-- / div.container -->
@@ -1054,8 +1054,8 @@ any links that you are not going to use.
   "url": "https://carpentries-incubator.github.io/statistical-probabilistic-programming-r/instructor/stan.html",
   "identifier": "https://carpentries-incubator.github.io/statistical-probabilistic-programming-r/instructor/stan.html",
   "dateCreated": "2023-11-06",
-  "dateModified": "2023-11-06",
-  "datePublished": "2023-11-14"
+  "dateModified": "2023-11-21",
+  "datePublished": "2023-11-21"
 }
 
   </script><script>
