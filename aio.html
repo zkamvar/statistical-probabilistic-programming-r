@@ -774,7 +774,7 @@ data as described above.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <div class="codewrapper sourceCode" id="cb10">
 <h3 class="code-label">R<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
@@ -974,7 +974,7 @@ the MAPs of the marginal posteriors of <span class="math inline">\(\alpha\)</spa
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>No. Why?</p>
 </div>
@@ -1015,7 +1015,7 @@ daily milk yield is more than 30 liters?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3">Show me the solution</h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <p>Solution</p>
 </div>
@@ -1129,7 +1129,7 @@ model.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p><span class="math display">\[\begin{align}
 p(\theta | X) &amp;\propto  p(X | \theta) p(\theta) \\
@@ -1305,7 +1305,7 @@ and compare it to the 95% CIs.</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1">Give me a hint</h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>If you sort the samples in order, each set of <span class="math inline">\(n\)</span> consecutive samples contains <span class="math inline">\(100 \cdot n/N \%\)</span> of the posterior.</p>
 </div>
@@ -1317,7 +1317,7 @@ and compare it to the 95% CIs.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2">Show me the solution</h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Solution</p>
 </div>
@@ -1420,23 +1420,23 @@ distributions.</p></li>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">STAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode stan" tabindex="0"><code class="sourceCode stan"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">data</span>{</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; N; </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; x; </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">parameters</span>{</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>, <span class="kw">upper</span>=<span class="dv">1</span>&gt; p;</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">model</span>{</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Likelihood</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    x ~ binomial(N, p);</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Uniform prior for p</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  }</span></code></pre>
+<pre class="sourceCode stan" tabindex="0"><code class="sourceCode stan"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>  <span class="kw">data</span>{</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">1</span>&gt; N; </span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; x; </span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>  }</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  </span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="kw">parameters</span>{</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>, <span class="kw">upper</span>=<span class="dv">1</span>&gt; p;</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  }</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  </span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  <span class="kw">model</span>{</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>    </span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    <span class="co">// Likelihood</span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    x ~ binomial(N, p);</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    </span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>    <span class="co">// Uniform prior for p</span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>    </span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  }</span></code></pre>
 </div>
 <p>Notice that the types of each data variable and parameter needs to be
 specified. Moreover, it is helpful to specify the ranges the variables
@@ -1708,27 +1708,27 @@ data with unknown mean and standard deviation parameters <span class="math inlin
 <div class="codewrapper sourceCode" id="cb9">
 <h3 class="code-label">STAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode stan" tabindex="0"><code class="sourceCode stan"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N;</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] X;</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> mu;</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; sigma;</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">// likelihood is vectorized!</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>  X ~ normal(mu, sigma);</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Priors</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  mu ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>  sigma ~ gamma(<span class="dv">2</span>, <span class="dv">1</span>);</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+<pre class="sourceCode stan" tabindex="0"><code class="sourceCode stan"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N;</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="dt">vector</span>[N] X;</span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>}</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="kw">parameters</span> {</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>  <span class="dt">real</span> mu;</span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; sigma;</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>}</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a></span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="kw">model</span> {</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>  </span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>  <span class="co">// likelihood is vectorized!</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>  X ~ normal(mu, sigma);</span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>  </span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a>  <span class="co">// Priors</span></span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>  mu ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a>  sigma ~ gamma(<span class="dv">2</span>, <span class="dv">1</span>);</span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>  </span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a>}</span></code></pre>
 </div>
 <p>Notice that the likelihood in the model block is vectorized.
 Alternatively, one could write a for loop that samples each data point
@@ -1908,27 +1908,27 @@ variable.</p>
 <div class="codewrapper sourceCode" id="cb13">
 <h3 class="code-label">STAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode stan" tabindex="0"><code class="sourceCode stan"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N; <span class="co">// Sample size</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] x; <span class="co">// x-values</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] y; <span class="co">// y-values</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> alpha; <span class="co">// intercept</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> beta;  <span class="co">// slope</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; sigma; <span class="co">// noise</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Likelihood</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  y ~ normal(alpha + beta * x, sigma);</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Priors</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  alpha ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  beta ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  sigma ~ gamma(<span class="dv">2</span>, <span class="dv">1</span>);</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+<pre class="sourceCode stan" tabindex="0"><code class="sourceCode stan"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N; <span class="co">// Sample size</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>  <span class="dt">vector</span>[N] x; <span class="co">// x-values</span></span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  <span class="dt">vector</span>[N] y; <span class="co">// y-values</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>}</span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="kw">parameters</span> {</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>  <span class="dt">real</span> alpha; <span class="co">// intercept</span></span>
+<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  <span class="dt">real</span> beta;  <span class="co">// slope</span></span>
+<span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; sigma; <span class="co">// noise</span></span>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>}</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="kw">model</span> {</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a>  </span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a>  <span class="co">// Likelihood</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a>  y ~ normal(alpha + beta * x, sigma);</span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a>  </span>
+<span id="cb13-17"><a href="#cb13-17" tabindex="-1"></a>  <span class="co">// Priors</span></span>
+<span id="cb13-18"><a href="#cb13-18" tabindex="-1"></a>  alpha ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
+<span id="cb13-19"><a href="#cb13-19" tabindex="-1"></a>  beta ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
+<span id="cb13-20"><a href="#cb13-20" tabindex="-1"></a>  sigma ~ gamma(<span class="dv">2</span>, <span class="dv">1</span>);</span>
+<span id="cb13-21"><a href="#cb13-21" tabindex="-1"></a>}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1956,41 +1956,40 @@ variable.</p>
 <div class="codewrapper sourceCode" id="cb14">
 <h3 class="code-label">STAN<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode stan" tabindex="0"><code class="sourceCode stan"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> {</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N; <span class="co">// Sample size</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; M; <span class="co">// Number of features</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">matrix</span>[N, M] x; <span class="co">// x-values</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[N] y; <span class="co">// y-values</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="kw">parameters</span> {</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span> alpha; <span class="co">// intercept</span></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">vector</span>[M] beta;  <span class="co">// slopes</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; sigma; <span class="co">// noise</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="kw">model</span> {</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Likelihood</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  y ~ normal(alpha + x * beta, sigma);</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Priors</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  alpha ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  beta ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  sigma ~ gamma(<span class="dv">2</span>, <span class="dv">1</span>);</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre>
+<pre class="sourceCode stan" tabindex="0"><code class="sourceCode stan"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="kw">data</span> {</span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; N; <span class="co">// Sample size</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>  <span class="dt">int</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; M; <span class="co">// Number of features</span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>  <span class="dt">matrix</span>[N, M] x; <span class="co">// x-values</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>  <span class="dt">vector</span>[N] y; <span class="co">// y-values</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>}</span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="kw">parameters</span> {</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a>  <span class="dt">real</span> alpha; <span class="co">// intercept</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>  <span class="dt">vector</span>[M] beta;  <span class="co">// slopes</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>  <span class="dt">real</span>&lt;<span class="kw">lower</span>=<span class="dv">0</span>&gt; sigma; <span class="co">// noise</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a>}</span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="kw">model</span> {</span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a>  </span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a>  <span class="co">// Likelihood</span></span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a>  y ~ normal(alpha + x * beta, sigma);</span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a>  </span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a>  <span class="co">// Priors</span></span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a>  alpha ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a>  beta ~ normal(<span class="dv">0</span>, <span class="dv">1</span>);</span>
+<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a>  sigma ~ gamma(<span class="dv">2</span>, <span class="dv">1</span>);</span>
+<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a>}</span></code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="callout1" class="callout callout">
+<div id="callout1" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Callout<a class="anchor" aria-label="anchor" href="#callout1"></a>
-</h3>
+<div class="section level3 callout-title callout-inner">
+<h3 class="callout-title">Callout</h3>
 <div class="callout-content">
 <ul>
 <li><p>With Stan, you can fit model that have continuous parameters.
@@ -2599,7 +2598,7 @@ and completely pooled variants of the hierarchical binomial model.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1">Show me the solution</h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Unpooled:</p>
 <p><span class="math display">\[\begin{align}
@@ -2965,8 +2964,8 @@ on the episode they refer to.</p>
   "url": "https://carpentries-incubator.github.io/statistical-probabilistic-programming-r/aio.html",
   "identifier": "https://carpentries-incubator.github.io/statistical-probabilistic-programming-r/aio.html",
   "dateCreated": "2023-11-06",
-  "dateModified": "2024-02-27",
-  "datePublished": "2024-02-27"
+  "dateModified": "2024-03-05",
+  "datePublished": "2024-03-05"
 }
 
   </script><script>
